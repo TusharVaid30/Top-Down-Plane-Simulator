@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -26,7 +25,7 @@ public class PlaneController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rb.velocity = transform.up * speed * 10f * Time.fixedDeltaTime;
+        _rb.velocity = transform.up * (speed * 10f * Time.fixedDeltaTime);
     }
 
     private void Move(InputAction.CallbackContext obj)
@@ -44,6 +43,6 @@ public class PlaneController : MonoBehaviour
     private void Update()
     {
         if (_rotate)
-            transform.Rotate(0f, 0f, -_axis.x * rotationSensitivity);
+            transform.Rotate(0f, 0f, -_axis.x * rotationSensitivity * 10f * Time.deltaTime);
     }
 }
