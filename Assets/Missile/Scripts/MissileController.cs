@@ -4,7 +4,8 @@ public class MissileController : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private float lookAtSpeed;
-    [SerializeField] private float missileVanishTime;
+    [SerializeField] private float speedReductionRate;
+    [SerializeField] private float vanishTime;
     
     private Transform _player;
     private Rigidbody _rb;
@@ -13,7 +14,9 @@ public class MissileController : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody>();
         _player = GameObject.FindGameObjectWithTag("Player").transform;
-        InvokeRepeating(nameof(SlowDown), missileVanishTime / speed, missileVanishTime / speed);
+        InvokeRepeating(nameof(SlowDown), speedReductionRate / speed, speedReductionRate / speed);
+        
+        Destroy(gameObject, vanishTime);
     }
 
     private void SlowDown()
@@ -25,7 +28,7 @@ public class MissileController : MonoBehaviour
     private void FixedUpdate()
     {
         var missileTransform = transform;
-        _rb.velocity = missileTransform.up * speed * 10f * Time.fixedDeltaTime;
+        _rb.velocity = missileTransform.up * (speed * 10f * Time.fixedDeltaTime);
         
         var difference = _player.position - missileTransform.position;
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;

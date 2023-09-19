@@ -153,7 +153,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 300
   lookAtSpeed: 10
-  missileVanishTime: 5
+  speedReductionRate: 5
+  vanishTime: 4
 --- !u!54 &-2037743729879727058
 Rigidbody:
   m_ObjectHideFlags: 0
