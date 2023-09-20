@@ -3,7 +3,9 @@ using UnityEngine.InputSystem;
 
 public class PlaneController : MonoBehaviour
 {
-    [SerializeField] private float speed;
+    public float speed;
+    public float upgradedSpeed;
+    
     [SerializeField] private float rotationSensitivity;
     
     private Rigidbody _rb;

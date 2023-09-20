@@ -3,7 +3,7 @@ using Random = UnityEngine.Random;
 
 public class ObjectSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject prefab;
+    [SerializeField] private GameObject[] prefabs;
     [SerializeField] private float minX;
     [SerializeField] private float maxX;
     [SerializeField] private float spawnDelay;
@@ -17,7 +17,8 @@ public class ObjectSpawner : MonoBehaviour
     {
         var spawnPos = new Vector3(Random.Range(minX, maxX), 0f, 0f);
 
-        var inst = Instantiate(prefab, transform);
+        int randomIndex = Random.Range(0, prefabs.Length);
+        var inst = Instantiate(prefabs[randomIndex], transform);
 
         inst.transform.localPosition = spawnPos;
         inst.transform.parent = null;

@@ -18,13 +18,7 @@ public class ScoreCounter : MonoBehaviour
         InvokeRepeating(nameof(IncreaseScore), 1f, 1f);
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.A))
-            GetUpgrade();
-    }
-
-    private void GetUpgrade()
+    public void GetUpgrade()
     {
         _tempScore = _currentScore;
         _tempIncreasedScore = _currentScore + coinPoints;
