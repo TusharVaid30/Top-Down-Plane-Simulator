@@ -5,8 +5,11 @@ using UnityEngine;
 public class ScoreCounter : MonoBehaviour
 {
     [SerializeField] private TMP_Text scoreCounterText;
+    [SerializeField] private TMP_Text scoreCounterTextRetryMenu;
     [SerializeField] private int coinPoints;
     [SerializeField] private TMP_Text timeText;
+    [SerializeField] private TMP_Text timeTextRetryMenu;
+    [SerializeField] private PlaneCollisions planeCollision;
     
     private int _currentScore;
     private int _tempScore;
@@ -21,14 +24,17 @@ public class ScoreCounter : MonoBehaviour
 
     private void IncreaseTime()
     {
+        if (planeCollision.planeDestroyed) return;
         _time++;
         timeText.text = "time: " + _time;
+        timeTextRetryMenu.text = "time: " + _time;
     }
     
     public void GetUpgrade()
     {
         _tempScore = _currentScore;
         _tempIncreasedScore = _currentScore + coinPoints;
+        scoreCounterText.color = Color.yellow;
         StartCoroutine(Upgrade());
     }
 
@@ -41,11 +47,14 @@ public class ScoreCounter : MonoBehaviour
             _currentScore = _tempScore;
             IncreaseScore();
         }
+        scoreCounterText.color = Color.white;
     }
     
     private void IncreaseScore()
     {
+        if (planeCollision.planeDestroyed) return;
         _currentScore++;
+        scoreCounterTextRetryMenu.text = "score: " + _currentScore;
         scoreCounterText.GetComponent<Animator>().Play("Score Change", -1, 0f);
     }
 

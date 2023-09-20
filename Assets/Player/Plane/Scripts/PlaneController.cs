@@ -12,12 +12,14 @@ public class PlaneController : MonoBehaviour
     private PlayerInput _playerInput;
     private bool _rotate;
     private Vector2 _axis;
+    private PlaneCollisions _planeCollisions;
     
     private void Awake()
     {
         _playerInput = GetComponent<PlayerInput>();
         _playerInput.actions["Move"].performed += Move;
         _playerInput.actions["Move"].canceled += EndMove;
+        _planeCollisions = GetComponent<PlaneCollisions>();
     }
 
     private void Start()
@@ -33,18 +35,6 @@ public class PlaneController : MonoBehaviour
     private void Move(InputAction.CallbackContext obj)
     {
         _axis = obj.ReadValue<Vector2>();
-        if (_axis.x < 0f)
-        {
-            var rot = new Vector3(0f, 50f, 0f);
-            transform.GetChild(1).localEulerAngles = rot;
-        }
-        else
-        {
-            var rot = new Vector3(0f, -50f, 0f);
-            if (rot.y > 180)
-                rot.y -= 360;
-            transform.GetChild(1).localEulerAngles = rot;
-        }
         _rotate = true;
     }
 
@@ -52,17 +42,11 @@ public class PlaneController : MonoBehaviour
     {
         _axis = Vector2.zero;
         _rotate = false;
-        
-        transform.GetChild(1).localRotation = Quaternion.identity;
     }
 
     private void Update()
     {
-        if (_rotate)
-        {
+        if (_rotate && !_planeCollisions.planeDestroyed)
             transform.Rotate(0f, 0f, -_axis.x * rotationSensitivity * 10f * Time.deltaTime);
-        }
-        
-        transform.GetChild(0).localRotation = Quaternion.Lerp(transform.GetChild(0).localRotation, transform.GetChild(1).localRotation, 3f * Time.deltaTime);
     }
 }

@@ -1,12 +1,15 @@
+using System.Collections;
 using UnityEngine;
 
 public class MissileController : MonoBehaviour
 {
+    public GameObject explosion;
+    
     [SerializeField] private float speed;
     [SerializeField] private float lookAtSpeed;
     [SerializeField] private float speedReductionRate;
     [SerializeField] private float vanishTime;
-    
+
     private Transform _player;
     private Rigidbody _rb;
     
@@ -15,8 +18,18 @@ public class MissileController : MonoBehaviour
         _rb = GetComponent<Rigidbody>();
         _player = GameObject.FindGameObjectWithTag("Player").transform;
         InvokeRepeating(nameof(SlowDown), speedReductionRate / speed, speedReductionRate / speed);
+
+        StartCoroutine(Delay());
+    }
+
+    private IEnumerator Delay()
+    {
+        yield return new WaitForSeconds(vanishTime);
         
-        Destroy(gameObject, vanishTime);
+        explosion.SetActive(true);
+        transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
+        transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
+        GetComponent<BoxCollider>().enabled = false;
     }
 
     private void SlowDown()
