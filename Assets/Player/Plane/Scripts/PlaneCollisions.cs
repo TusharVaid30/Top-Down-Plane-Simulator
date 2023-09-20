@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -14,6 +13,10 @@ public class PlaneCollisions : MonoBehaviour
     [SerializeField] private GameObject explosion;
     [SerializeField] private GameObject shield;
     [SerializeField] private Animator retryMenu;
+    [SerializeField] private GameObject planeAudio;
+    [SerializeField] private AudioSource explosionAudio;
+    [SerializeField] private AudioSource powerUp;
+    [SerializeField] private AudioSource missleAudio;
     
     private int _coinsCollected;
     private PlaneController _planeController;
@@ -32,15 +35,17 @@ public class PlaneCollisions : MonoBehaviour
         {
             scoreCounter.GetUpgrade();
             _coinsCollected++;
-            coinText.text = "coin: " + _coinsCollected;
-            coinTextRetryMenu.text = "coin: " + _coinsCollected;
+            coinText.text = "coins: " + _coinsCollected;
+            coinTextRetryMenu.text = "coins: " + _coinsCollected;
             Destroy(other.gameObject);
+            powerUp.Play();
         }
         else if (other.CompareTag("Speed Boost"))
         {
             _planeController.speed = _planeController.upgradedSpeed;
             StartCoroutine(CancelPowerUp());
             Destroy(other.gameObject);
+            powerUp.Play();
         }
         else if (other.CompareTag("Shield Boost"))
         {
@@ -48,9 +53,11 @@ public class PlaneCollisions : MonoBehaviour
             shield.SetActive(true);
             StartCoroutine(CancelPowerUp());
             Destroy(other.gameObject);
+            powerUp.Play();
         }
         else if (other.CompareTag("Missile"))
         {
+            missleAudio.Play();
             if (!_shield)
             {
                 transform.GetChild(0).gameObject.SetActive(false);
@@ -59,6 +66,16 @@ public class PlaneCollisions : MonoBehaviour
                 GetComponents<Collider>()[0].enabled = false;
                 GetComponents<Collider>()[1].enabled = false;
                 StartCoroutine(OpenMenu());
+
+                if (scoreCounter.currentScore > PlayerPrefs.GetInt("HIGHSCORE"))
+                    PlayerPrefs.SetInt("HIGHSCORE", scoreCounter.currentScore);
+                if (scoreCounter.time > PlayerPrefs.GetInt("TIME"))
+                    PlayerPrefs.SetInt("TIME", scoreCounter.time);
+                if (_coinsCollected > PlayerPrefs.GetInt("COINS"))
+                    PlayerPrefs.SetInt("COINS", _coinsCollected);
+                
+                explosionAudio.Play();
+                planeAudio.SetActive(false);
             }
             else
             {

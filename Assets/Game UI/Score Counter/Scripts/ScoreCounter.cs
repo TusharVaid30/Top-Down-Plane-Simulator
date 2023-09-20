@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ScoreCounter : MonoBehaviour
 {
+    public int currentScore;
+    public int time;
+    
     [SerializeField] private TMP_Text scoreCounterText;
     [SerializeField] private TMP_Text scoreCounterTextRetryMenu;
     [SerializeField] private int coinPoints;
@@ -11,10 +14,8 @@ public class ScoreCounter : MonoBehaviour
     [SerializeField] private TMP_Text timeTextRetryMenu;
     [SerializeField] private PlaneCollisions planeCollision;
     
-    private int _currentScore;
     private int _tempScore;
     private int _tempIncreasedScore;
-    private int _time;
     
     private void Start()
     {
@@ -25,15 +26,15 @@ public class ScoreCounter : MonoBehaviour
     private void IncreaseTime()
     {
         if (planeCollision.planeDestroyed) return;
-        _time++;
-        timeText.text = "time: " + _time;
-        timeTextRetryMenu.text = "time: " + _time;
+        time++;
+        timeText.text = "time: " + time;
+        timeTextRetryMenu.text = "time: " + time;
     }
     
     public void GetUpgrade()
     {
-        _tempScore = _currentScore;
-        _tempIncreasedScore = _currentScore + coinPoints;
+        _tempScore = currentScore;
+        _tempIncreasedScore = currentScore + coinPoints;
         scoreCounterText.color = Color.yellow;
         StartCoroutine(Upgrade());
     }
@@ -44,7 +45,7 @@ public class ScoreCounter : MonoBehaviour
         {
             yield return new WaitForSeconds(.1f);
             _tempScore++;
-            _currentScore = _tempScore;
+            currentScore = _tempScore;
             IncreaseScore();
         }
         scoreCounterText.color = Color.white;
@@ -53,13 +54,13 @@ public class ScoreCounter : MonoBehaviour
     private void IncreaseScore()
     {
         if (planeCollision.planeDestroyed) return;
-        _currentScore++;
-        scoreCounterTextRetryMenu.text = "score: " + _currentScore;
+        currentScore++;
+        scoreCounterTextRetryMenu.text = "score: " + currentScore;
         scoreCounterText.GetComponent<Animator>().Play("Score Change", -1, 0f);
     }
 
     private void Display()
     {
-        scoreCounterText.text = _currentScore.ToString();
+        scoreCounterText.text = currentScore.ToString();
     }
 }
