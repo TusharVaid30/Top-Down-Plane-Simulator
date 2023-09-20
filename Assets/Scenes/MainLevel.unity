@@ -431,8 +431,8 @@ MonoBehaviour:
   prefabs:
   - {fileID: 8200055383254831328, guid: 02cf8ca62cbe6354f9cffe1678bd9dad, type: 3}
   minX: -120
-  maxX: 120
-  spawnDelay: 2
+  maxX: 0
+  spawnDelay: 4
 --- !u!1 &104722935
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,7 +546,7 @@ GameObject:
   - component: {fileID: 151376643}
   - component: {fileID: 151376644}
   m_Layer: 0
-  m_Name: Distance
+  m_Name: Far Clouds
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -586,7 +586,7 @@ MonoBehaviour:
   - {fileID: 6515362710975173730, guid: 0151f51432698444d8a8845ff3f61562, type: 3}
   minX: -90
   maxX: 90
-  spawnDelay: 1
+  spawnDelay: 3
 --- !u!1 &239263658
 GameObject:
   m_ObjectHideFlags: 0
@@ -598,7 +598,7 @@ GameObject:
   - component: {fileID: 239263659}
   - component: {fileID: 239263660}
   m_Layer: 0
-  m_Name: Distance
+  m_Name: Far Clouds
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -638,7 +638,7 @@ MonoBehaviour:
   - {fileID: 6515362710975173730, guid: 0151f51432698444d8a8845ff3f61562, type: 3}
   minX: -200
   maxX: 200
-  spawnDelay: 1
+  spawnDelay: 3
 --- !u!1001 &254523257
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1057,7 +1057,7 @@ MonoBehaviour:
   - {fileID: 6515362710975173730, guid: bff8dd177ae60c14ca309c1d0f9870c4, type: 3}
   minX: -60
   maxX: 60
-  spawnDelay: 1
+  spawnDelay: 3
 --- !u!1 &391917649
 GameObject:
   m_ObjectHideFlags: 0
@@ -6191,7 +6191,7 @@ MonoBehaviour:
   - {fileID: 6515362710975173730, guid: bff8dd177ae60c14ca309c1d0f9870c4, type: 3}
   minX: -120
   maxX: 120
-  spawnDelay: 1
+  spawnDelay: 3
 --- !u!1 &538475172
 GameObject:
   m_ObjectHideFlags: 0
@@ -7703,8 +7703,8 @@ MonoBehaviour:
   prefabs:
   - {fileID: 8200055383254831328, guid: 02cf8ca62cbe6354f9cffe1678bd9dad, type: 3}
   minX: -60
-  maxX: 60
-  spawnDelay: 2
+  maxX: 0
+  spawnDelay: 4
 --- !u!1 &910608952
 GameObject:
   m_ObjectHideFlags: 0
@@ -9543,7 +9543,7 @@ MonoBehaviour:
   - {fileID: 6515362710975173730, guid: bff8dd177ae60c14ca309c1d0f9870c4, type: 3}
   minX: -60
   maxX: 60
-  spawnDelay: 1
+  spawnDelay: 3
 --- !u!1001 &1485339613
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9921,8 +9921,8 @@ MonoBehaviour:
   prefabs:
   - {fileID: 8200055383254831328, guid: 02cf8ca62cbe6354f9cffe1678bd9dad, type: 3}
   minX: -60
-  maxX: 60
-  spawnDelay: 2
+  maxX: 0
+  spawnDelay: 4
 --- !u!1001 &1668021713
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10083,7 +10083,7 @@ GameObject:
   - component: {fileID: 1755308290}
   - component: {fileID: 1755308291}
   m_Layer: 0
-  m_Name: Distance
+  m_Name: Far Clouds
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -10123,7 +10123,7 @@ MonoBehaviour:
   - {fileID: 6515362710975173730, guid: 0151f51432698444d8a8845ff3f61562, type: 3}
   minX: -90
   maxX: 90
-  spawnDelay: 1
+  spawnDelay: 3
 --- !u!1 &1885311626
 GameObject:
   m_ObjectHideFlags: 0
@@ -10171,8 +10171,8 @@ MonoBehaviour:
   prefabs:
   - {fileID: 8200055383254831328, guid: 02cf8ca62cbe6354f9cffe1678bd9dad, type: 3}
   minX: -120
-  maxX: 120
-  spawnDelay: 2
+  maxX: 0
+  spawnDelay: 4
 --- !u!1 &1897526479
 GameObject:
   m_ObjectHideFlags: 0

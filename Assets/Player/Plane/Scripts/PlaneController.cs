@@ -16,6 +16,7 @@ public class PlaneController : MonoBehaviour
     
     private void Awake()
     {
+        Application.targetFrameRate = 60;
         _playerInput = GetComponent<PlayerInput>();
         _playerInput.actions["Move"].performed += Move;
         _playerInput.actions["Move"].canceled += EndMove;

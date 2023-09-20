@@ -30,7 +30,15 @@ public class MissileController : MonoBehaviour
         transform.GetChild(0).GetComponent<SpriteRenderer>().enabled = false;
         transform.GetChild(0).GetChild(0).gameObject.SetActive(false);
         GetComponent<BoxCollider>().enabled = false;
+        StartCoroutine(DestroyMissile());
     }
+
+    private IEnumerator DestroyMissile()
+    {
+        yield return new WaitForSeconds(.3f);
+        Destroy(gameObject);
+    }
+    
 
     private void SlowDown()
     {
