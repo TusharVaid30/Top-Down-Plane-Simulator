@@ -21,6 +21,7 @@ public class ObjectSpawner : MonoBehaviour
         var inst = Instantiate(prefabs[randomIndex], transform);
 
         inst.transform.localPosition = spawnPos;
+        inst.transform.rotation = Quaternion.identity;
         inst.transform.parent = null;
     }
 }

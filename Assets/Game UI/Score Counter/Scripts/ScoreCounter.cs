@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -8,16 +6,25 @@ public class ScoreCounter : MonoBehaviour
 {
     [SerializeField] private TMP_Text scoreCounterText;
     [SerializeField] private int coinPoints;
+    [SerializeField] private TMP_Text timeText;
     
     private int _currentScore;
     private int _tempScore;
     private int _tempIncreasedScore;
+    private int _time;
     
     private void Start()
     {
         InvokeRepeating(nameof(IncreaseScore), 1f, 1f);
+        InvokeRepeating(nameof(IncreaseTime), 1f, 1f);
     }
 
+    private void IncreaseTime()
+    {
+        _time++;
+        timeText.text = "time: " + _time;
+    }
+    
     public void GetUpgrade()
     {
         _tempScore = _currentScore;
