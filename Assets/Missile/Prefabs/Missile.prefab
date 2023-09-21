@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7253681893863473636}
   - component: {fileID: 645624751394145701}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: Afterburner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4899,8 +4899,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosion: {fileID: 8306282014379312487}
   speed: 300
-  lookAtSpeed: 10
-  speedReductionRate: 5
+  lookAtSpeed: 3
   vanishTime: 4
 --- !u!54 &-2037743729879727058
 Rigidbody:
@@ -4941,7 +4940,7 @@ GameObject:
   - component: {fileID: 4120303730561489046}
   - component: {fileID: 5444706011912297703}
   m_Layer: 0
-  m_Name: Particle System (1)
+  m_Name: Explosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4972,7 +4971,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 5
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 2
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -9826,7 +9825,7 @@ GameObject:
   - component: {fileID: 3734944198734189610}
   - component: {fileID: 8527788775587219217}
   m_Layer: 0
-  m_Name: Missile
+  m_Name: Missile Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

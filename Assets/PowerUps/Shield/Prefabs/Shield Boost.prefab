@@ -107,9 +107,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2624800850951686172}
   - component: {fileID: 2091159176390203675}
+  - component: {fileID: 4744499599749391038}
   m_Layer: 0
   m_Name: Shield Boost
-  m_TagString: Shield Boost
+  m_TagString: PowerUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -151,3 +152,16 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 2.11
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4744499599749391038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6150783837010195470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 566accdfce281754f9e6765cd5007dd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shieldTime: 5

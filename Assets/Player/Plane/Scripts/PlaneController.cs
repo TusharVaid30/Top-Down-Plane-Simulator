@@ -6,7 +6,7 @@ public class PlaneController : MonoBehaviour
     public float speed;
     public float upgradedSpeed;
     
-    [SerializeField] private float rotationSensitivity;
+    [SerializeField] private float rotationSpeed;
     
     private Rigidbody _rb;
     private PlayerInput _playerInput;
@@ -17,9 +17,11 @@ public class PlaneController : MonoBehaviour
     private void Awake()
     {
         Application.targetFrameRate = 60;
+        
         _playerInput = GetComponent<PlayerInput>();
         _playerInput.actions["Move"].performed += Move;
         _playerInput.actions["Move"].canceled += EndMove;
+        
         _planeCollisions = GetComponent<PlaneCollisions>();
     }
 
@@ -47,7 +49,14 @@ public class PlaneController : MonoBehaviour
 
     private void Update()
     {
-        if (_rotate && !_planeCollisions.planeDestroyed)
-            transform.Rotate(0f, 0f, -_axis.x * rotationSensitivity * 10f * Time.deltaTime);
+        if (!_rotate || _planeCollisions.planeDestroyed) return;
+        var position = transform.position;
+        var direction = (Vector3) _axis + position;
+        var difference = direction - position;
+            
+        float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+            
+        var rot = Quaternion.Euler(0.0f, 0.0f, rotationZ - 90f);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rot, rotationSpeed * Time.deltaTime);
     }
 }

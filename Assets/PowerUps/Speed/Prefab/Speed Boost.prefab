@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2675477969116565988}
   - component: {fileID: 1284888589038892473}
+  - component: {fileID: 6405130038203749572}
   m_Layer: 0
   m_Name: Speed Boost
-  m_TagString: Speed Boost
+  m_TagString: PowerUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54,6 +55,19 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 2.11
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6405130038203749572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7123099969015743811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d91f5e8827d569645a357b1e70d3cd80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speedBoostTime: 5
 --- !u!1 &9176520784329997703
 GameObject:
   m_ObjectHideFlags: 0

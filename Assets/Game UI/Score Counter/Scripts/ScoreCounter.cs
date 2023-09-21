@@ -9,13 +9,16 @@ public class ScoreCounter : MonoBehaviour
     
     [SerializeField] private TMP_Text scoreCounterText;
     [SerializeField] private TMP_Text scoreCounterTextRetryMenu;
-    [SerializeField] private int coinPoints;
+    [SerializeField] private int coinBonusPoints;
     [SerializeField] private TMP_Text timeText;
     [SerializeField] private TMP_Text timeTextRetryMenu;
     [SerializeField] private PlaneCollisions planeCollision;
+    [SerializeField] private TMP_Text coinText;
+    [SerializeField] private TMP_Text coinTextRetryMenu;
     
     private int _tempScore;
     private int _tempIncreasedScore;
+    private int _coinsCollected;
     
     private void Start()
     {
@@ -31,15 +34,16 @@ public class ScoreCounter : MonoBehaviour
         timeTextRetryMenu.text = "time: " + time;
     }
     
-    public void GetUpgrade()
+    public void CoinBonus()
     {
         _tempScore = currentScore;
-        _tempIncreasedScore = currentScore + coinPoints;
+        _tempIncreasedScore = currentScore + coinBonusPoints;
         scoreCounterText.color = Color.yellow;
-        StartCoroutine(Upgrade());
+        
+        StartCoroutine(BonusAnimation());
     }
 
-    private IEnumerator Upgrade()
+    private IEnumerator BonusAnimation()
     {
         while (_tempScore < _tempIncreasedScore)
         {
@@ -49,6 +53,10 @@ public class ScoreCounter : MonoBehaviour
             IncreaseScore();
         }
         scoreCounterText.color = Color.white;
+        
+        _coinsCollected++;
+        coinText.text = "coins: " + _coinsCollected;
+        coinTextRetryMenu.text = "coins: " + _coinsCollected;
     }
     
     private void IncreaseScore()

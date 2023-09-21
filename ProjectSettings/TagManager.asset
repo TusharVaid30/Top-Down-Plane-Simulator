@@ -4,10 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Coin
-  - Speed Boost
-  - Shield Boost
   - Missile
+  - PowerUp
   layers:
   - Default
   - TransparentFX
