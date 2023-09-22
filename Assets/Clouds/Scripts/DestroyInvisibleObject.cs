@@ -1,13 +1,16 @@
 using System.Collections;
 using UnityEngine;
 
-public class DestroyCloud : MonoBehaviour
+public class DestroyInvisibleObject : MonoBehaviour
 {
+    [SerializeField] private bool shouldDestroy = true;
+
     private bool _canBeDestroyed;
     
     private void Start()
     {
-        StartCoroutine(Delay());
+        if (shouldDestroy)
+            StartCoroutine(Delay());
     }
 
     private void OnBecameInvisible()

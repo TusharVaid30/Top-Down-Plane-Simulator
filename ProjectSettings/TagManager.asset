@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Missile
   - PowerUp
+  - Wall
+  - Cloud
+  - Wall Bounds
   layers:
   - Default
   - TransparentFX

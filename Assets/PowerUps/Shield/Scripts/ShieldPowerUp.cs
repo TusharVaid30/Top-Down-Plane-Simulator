@@ -15,5 +15,6 @@ public class ShieldPowerUp : PowerUp
     {
         var powerUpHandler = _player.GetComponent<PowerUpHandler>();
         powerUpHandler.EnableShield(shieldTime);
+        powerUpHandler.powerUpEnabled = true;
     }
 }

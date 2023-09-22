@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class MissileController : MonoBehaviour
@@ -33,6 +34,12 @@ public class MissileController : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0.0f, 0.0f, rotationZ - 90f),
             lookAtSpeed * Time.deltaTime);
         
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.CompareTag("Wall Bounds"))
+            Destroy(gameObject);
     }
 
     private void OnDestroy()

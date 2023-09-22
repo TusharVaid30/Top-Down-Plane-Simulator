@@ -6,38 +6,42 @@ public class ScoreCounter : MonoBehaviour
 {
     public int currentScore;
     public int time;
+
+    [SerializeField] private int coinBonusPoints;
     
     [SerializeField] private TMP_Text scoreCounterText;
-    [SerializeField] private TMP_Text scoreCounterTextRetryMenu;
-    [SerializeField] private int coinBonusPoints;
     [SerializeField] private TMP_Text timeText;
-    [SerializeField] private TMP_Text timeTextRetryMenu;
-    [SerializeField] private PlaneCollisions planeCollision;
     [SerializeField] private TMP_Text coinText;
-    [SerializeField] private TMP_Text coinTextRetryMenu;
+
+    [SerializeField] private ScoreManager scoreManager;
     
     private int _tempScore;
     private int _tempIncreasedScore;
-    private int _coinsCollected;
     
+    private int _coinsCollected;
+
     private void Start()
     {
-        InvokeRepeating(nameof(IncreaseScore), 1f, 1f);
         InvokeRepeating(nameof(IncreaseTime), 1f, 1f);
     }
 
-    private void IncreaseTime()
+    private void Awake()
     {
-        if (planeCollision.planeDestroyed) return;
-        time++;
-        timeText.text = "time: " + time;
-        timeTextRetryMenu.text = "time: " + time;
+        PlaneCollisions.GameEnd += UpdateFinalScores;
     }
-    
+
+    private void OnDestroy()
+    {
+        PlaneCollisions.GameEnd -= UpdateFinalScores;
+    }
+
     public void CoinBonus()
     {
+        _coinsCollected++;
+        coinText.text = "coins: " + _coinsCollected;
+        
         _tempScore = currentScore;
-        _tempIncreasedScore = currentScore + coinBonusPoints;
+        _tempIncreasedScore = time + _coinsCollected * coinBonusPoints;
         scoreCounterText.color = Color.yellow;
         
         StartCoroutine(BonusAnimation());
@@ -53,22 +57,31 @@ public class ScoreCounter : MonoBehaviour
             IncreaseScore();
         }
         scoreCounterText.color = Color.white;
-        
-        _coinsCollected++;
-        coinText.text = "coins: " + _coinsCollected;
-        coinTextRetryMenu.text = "coins: " + _coinsCollected;
+
+        currentScore = time + _coinsCollected * coinBonusPoints;
     }
-    
+
     private void IncreaseScore()
     {
-        if (planeCollision.planeDestroyed) return;
         currentScore++;
-        scoreCounterTextRetryMenu.text = "score: " + currentScore;
         scoreCounterText.GetComponent<Animator>().Play("Score Change", -1, 0f);
+    }
+    
+    private void IncreaseTime()
+    {
+        if (PlaneCollisions.PlaneDestroyed) return;
+        IncreaseScore();
+        time++;
+        timeText.text = "time: " + time;
     }
 
     private void Display()
     {
         scoreCounterText.text = currentScore.ToString();
+    }
+
+    private void UpdateFinalScores()
+    {
+        scoreManager.DisplayInRetryMenu(time, _coinsCollected, time + _coinsCollected * coinBonusPoints);
     }
 }

@@ -12,7 +12,6 @@ public class PlaneController : MonoBehaviour
     private PlayerInput _playerInput;
     private bool _rotate;
     private Vector2 _axis;
-    private PlaneCollisions _planeCollisions;
     
     private void Awake()
     {
@@ -21,8 +20,6 @@ public class PlaneController : MonoBehaviour
         _playerInput = GetComponent<PlayerInput>();
         _playerInput.actions["Move"].performed += Move;
         _playerInput.actions["Move"].canceled += EndMove;
-        
-        _planeCollisions = GetComponent<PlaneCollisions>();
     }
 
     private void Start()
@@ -49,7 +46,7 @@ public class PlaneController : MonoBehaviour
 
     private void Update()
     {
-        if (!_rotate || _planeCollisions.planeDestroyed) return;
+        if (!_rotate || PlaneCollisions.PlaneDestroyed) return;
         var position = transform.position;
         var direction = (Vector3) _axis + position;
         var difference = direction - position;

@@ -15,5 +15,6 @@ public class SpeedPowerUp : PowerUp
     {
         var powerUpHandler = _player.GetComponent<PowerUpHandler>();
         powerUpHandler.EnableSpeedBoost(speedBoostTime);
+        powerUpHandler.powerUpEnabled = true;
     }
 }

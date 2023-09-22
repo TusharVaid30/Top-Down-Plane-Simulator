@@ -1,15 +1,16 @@
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlaneCollisions : MonoBehaviour
 {
-    public bool planeDestroyed;
+    public static bool PlaneDestroyed;
+    public static UnityAction GameEnd;
     
-    [SerializeField] private ScoreCounter scoreCounter;
     [SerializeField] private GameObject explosion;
-    [SerializeField] private Animator retryMenu;
+
     [SerializeField] private GameObject planeAudio;
-    [SerializeField] private AudioSource explosionAudio;
-    [SerializeField] private AudioSource powerUp;
+    [SerializeField] private AudioSource powerUpAudio;
     [SerializeField] private AudioSource missileAudio;
     
     private PowerUpHandler _powerUpHandler;
@@ -17,6 +18,13 @@ public class PlaneCollisions : MonoBehaviour
     private void Start()
     {
         _powerUpHandler = GetComponent<PowerUpHandler>();
+        PlaneDestroyed = false;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.CompareTag("Wall"))
+            EndGame();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -24,32 +32,29 @@ public class PlaneCollisions : MonoBehaviour
         if (other.CompareTag("PowerUp"))
         {
             other.GetComponent<PowerUp>().PickUp();
-            powerUp.Play();
+            powerUpAudio.Play();
+            Destroy(other.gameObject);
         }
         else if (other.CompareTag("Missile"))
         {
             missileAudio.Play();
             if (!_powerUpHandler.shieldEnabled)
-            {
-                planeDestroyed = true;
-                explosion.SetActive(true);
-                explosion.transform.parent = null;
-                retryMenu.Play("Show Menu", -1, 0f);
-                
-                explosionAudio.Play();
-                planeAudio.SetActive(false);
-
-                var planeVisual = transform.GetChild(0).gameObject;
-                Destroy(planeVisual);
-
-                if (scoreCounter.currentScore > PlayerPrefs.GetInt("HIGHSCORE"))
-                    PlayerPrefs.SetInt("HIGHSCORE", scoreCounter.currentScore);
-                if (scoreCounter.time > PlayerPrefs.GetInt("TIME"))
-                    PlayerPrefs.SetInt("TIME", scoreCounter.time);
-                // if (_coinsCollected > PlayerPrefs.GetInt("COINS"))
-                //     PlayerPrefs.SetInt("COINS", _coinsCollected);
-            }
+                EndGame();
+            Destroy(other.gameObject);
         }
-        Destroy(other.gameObject);
+    }
+
+    private void EndGame()
+    {
+        PlaneDestroyed = true;
+                
+        explosion.SetActive(true);
+        explosion.transform.parent = null;
+                
+        var planeVisual = transform.GetChild(0).gameObject;
+        Destroy(planeVisual);
+        planeAudio.SetActive(false);
+                
+        GameEnd.Invoke();
     }
 }

@@ -12,9 +12,9 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         Time.timeScale = 1f;
-        highScoreText.text = "HIGH SCORE: " + PlayerPrefs.GetInt("HIGHSCORE");
-        highestTimeText.text = "MOST TIME SURVIVED: " + PlayerPrefs.GetInt("TIME");
-        highestCoinsText.text = "MOST COINS COLLECTED: " + PlayerPrefs.GetInt("COINS");
+        highScoreText.text = "HIGH SCORE: " + PlayerPrefs.GetFloat("HIGHSCORE");
+        highestTimeText.text = "MOST TIME SURVIVED: " + PlayerPrefs.GetFloat("TIME");
+        highestCoinsText.text = "MOST COINS COLLECTED: " + PlayerPrefs.GetFloat("COINS");
     }
 
     private void ChangeScene()
