@@ -1,7 +1,7 @@
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class ObjectSpawner : MonoBehaviour
+public class CloudSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject[] prefabs;
     [SerializeField] private float minX;
