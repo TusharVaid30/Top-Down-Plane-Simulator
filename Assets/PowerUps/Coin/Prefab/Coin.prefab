@@ -67,6 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 901d5a1d690879247b4dfd6208248d3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawn: 0
 --- !u!1 &4253015001096018023
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,3 +165,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a97cab63096ee444af96324b3d9a317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shouldDestroy: 0

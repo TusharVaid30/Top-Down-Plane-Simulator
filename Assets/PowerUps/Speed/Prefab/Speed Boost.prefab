@@ -67,6 +67,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d91f5e8827d569645a357b1e70d3cd80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawn: 1
   speedBoostTime: 5
 --- !u!1 &9176520784329997703
 GameObject:
@@ -165,3 +166,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a97cab63096ee444af96324b3d9a317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shouldDestroy: 0

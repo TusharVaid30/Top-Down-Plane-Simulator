@@ -97,6 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a97cab63096ee444af96324b3d9a317, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shouldDestroy: 0
 --- !u!1 &6150783837010195470
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,4 +165,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 566accdfce281754f9e6765cd5007dd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawn: 1
   shieldTime: 5

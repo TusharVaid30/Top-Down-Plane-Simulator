@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class PlaneCollisions : MonoBehaviour
 {
@@ -8,7 +10,9 @@ public class PlaneCollisions : MonoBehaviour
     public static UnityAction GameEnd;
     
     [SerializeField] private GameObject explosion;
-
+    
+    [SerializeField] private List<PowerUpSpawner> powerUpSpawners;
+    
     [SerializeField] private GameObject planeAudio;
     [SerializeField] private AudioSource powerUpAudio;
     [SerializeField] private AudioSource missileAudio;
@@ -31,9 +35,13 @@ public class PlaneCollisions : MonoBehaviour
     {
         if (other.CompareTag("PowerUp"))
         {
-            other.GetComponent<PowerUp>().PickUp();
+            var powerUpObject = other.GetComponent<PowerUp>();
+            powerUpObject.PickUp();
             powerUpAudio.Play();
             Destroy(other.gameObject);
+            
+            if (powerUpObject.respawn)
+                powerUpSpawners[Random.Range(0, powerUpSpawners.Count)].Spawn();
         }
         else if (other.CompareTag("Missile"))
         {
