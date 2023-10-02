@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class PlaneController : MonoBehaviour
 {
@@ -7,19 +6,21 @@ public class PlaneController : MonoBehaviour
     public float upgradedSpeed;
     
     [SerializeField] private float rotationSpeed;
+
+    private PlayerInputHandler _playerInputHandler;
     
     private Rigidbody _rb;
-    private PlayerInput _playerInput;
     private bool _rotate;
     private Vector2 _axis;
-    
+
     private void Awake()
     {
         Application.targetFrameRate = 60;
+
+        _playerInputHandler = GetComponent<PlayerInputHandler>();
         
-        _playerInput = GetComponent<PlayerInput>();
-        _playerInput.actions["Move"].performed += Move;
-        _playerInput.actions["Move"].canceled += EndMove;
+        // setting up player input
+        _playerInputHandler.SetupInput();
     }
 
     private void Start()
@@ -29,30 +30,22 @@ public class PlaneController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // move in the forward direction
         _rb.velocity = transform.up * (speed * 10f * Time.fixedDeltaTime);
-    }
-
-    private void Move(InputAction.CallbackContext obj)
-    {
-        _axis = obj.ReadValue<Vector2>();
-        _rotate = true;
-    }
-
-    private void EndMove(InputAction.CallbackContext obj)
-    {
-        _axis = Vector2.zero;
-        _rotate = false;
     }
 
     private void Update()
     {
-        if (!_rotate || PlaneCollisions.PlaneDestroyed) return;
+        // check if analog is active and plane is not destroyed
+        if (PlaneCollisions.PlaneDestroyed) return;
+        
+        //rotate to analog direction
         var position = transform.position;
-        var direction = (Vector3) _axis + position;
+        var direction = (Vector3) _playerInputHandler.GetAxis() + position;
         var difference = direction - position;
-            
+        
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-            
+        
         var rot = Quaternion.Euler(0.0f, 0.0f, rotationZ - 90f);
         transform.rotation = Quaternion.Lerp(transform.rotation, rot, rotationSpeed * Time.deltaTime);
     }
