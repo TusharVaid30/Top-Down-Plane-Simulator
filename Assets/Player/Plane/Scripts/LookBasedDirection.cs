@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 
-public class AxisDirection : MonoBehaviour, IRotation
+public class LookBasedDirection : MonoBehaviour, IRotation
 {
     [SerializeField] private float rotationSpeed;
     
-    public void ChangeDirection(Vector3 axis)
+    public void ChangeRotation(Vector3 lookAtAxis)
     {
-        var difference = axis - transform.position;
+        var difference = lookAtAxis - transform.position;
 
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
