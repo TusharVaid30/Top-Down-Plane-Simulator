@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class CoinPowerUp : PowerUp
 {
     private ScoreCounter _scoreCounter;
@@ -7,7 +9,7 @@ public class CoinPowerUp : PowerUp
         _scoreCounter = FindObjectOfType<ScoreCounter>();
     }
 
-    public override void PickUp()
+    public override void PickUp(Component scoreCounter)
     {
         _scoreCounter.CoinBonus();
     }

@@ -3,17 +3,10 @@ using UnityEngine;
 public class ShieldPowerUp : PowerUp
 {
     [SerializeField] private float shieldTime;
-    
-    private GameObject _player;
-    
-    private void Start()
-    {
-        _player = GameObject.FindGameObjectWithTag("Player");
-    }
 
-    public override void PickUp()
+    public override void PickUp(Component player)
     {
-        var powerUpHandler = _player.GetComponent<PowerUpHandler>();
+        var powerUpHandler = player.GetComponent<PowerUpHandler>();
         powerUpHandler.EnableShield(shieldTime);
         powerUpHandler.powerUpEnabled = true;
     }
