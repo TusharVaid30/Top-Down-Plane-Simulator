@@ -2,36 +2,31 @@ using UnityEngine;
 
 public class PlaneController : MonoBehaviour
 {
-    public float speed;
-    public float upgradedSpeed;
-    
-    [SerializeField] private float rotationSpeed;
-
-    private PlayerInputHandler _playerInputHandler;
-    
-    private Rigidbody _rb;
-    private bool _rotate;
-    private Vector2 _axis;
+    private IController _controllerHandler;
+    private IMovement _movementHandler;
+    private IRotation _rotation;
 
     private void Awake()
     {
+        // setting up target frame rate for android
         Application.targetFrameRate = 60;
-
-        _playerInputHandler = GetComponent<PlayerInputHandler>();
         
-        // setting up player input
-        _playerInputHandler.SetupInput();
-    }
+        // setting up controller for input type (AI or player)
+        _controllerHandler = GetComponent<IController>();
+        _controllerHandler.SetupDirection();
 
-    private void Start()
-    {
-        _rb = GetComponent<Rigidbody>();
+        // setting up movement type
+        _movementHandler = GetComponent<IMovement>();
+        _movementHandler.SetupRigidbody();
+
+        // setting up rotation type 
+        _rotation = GetComponent<IRotation>();
     }
 
     private void FixedUpdate()
     {
         // move in the forward direction
-        _rb.velocity = transform.up * (speed * 10f * Time.fixedDeltaTime);
+        _movementHandler.Move();
     }
 
     private void Update()
@@ -39,14 +34,7 @@ public class PlaneController : MonoBehaviour
         // check if analog is active and plane is not destroyed
         if (PlaneCollisions.PlaneDestroyed) return;
         
-        //rotate to analog direction
-        var position = transform.position;
-        var direction = (Vector3) _playerInputHandler.GetAxis() + position;
-        var difference = direction - position;
-        
-        float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        
-        var rot = Quaternion.Euler(0.0f, 0.0f, rotationZ - 90f);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rot, rotationSpeed * Time.deltaTime);
+        // rotate to axis direction
+        _rotation.ChangeDirection(_controllerHandler.GetAxis());
     }
 }
