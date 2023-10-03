@@ -4,6 +4,7 @@ using Random = UnityEngine.Random;
 
 public abstract class PowerUp : MonoBehaviour
 {
+    public bool enabledPowerUp = false;
     public bool respawn = true;
     public float effectTime = 5f;
     
@@ -30,17 +31,22 @@ public abstract class PowerUp : MonoBehaviour
             
             ApplyEffect(other.transform);
             
-            PowerUpHandler.currentPowerUp = transform.GetComponent<PowerUp>();
+            PowerUpHandler.currentPowerUp = this;
             
             Destroy(gameObject, effectTime);
-            
-            if (respawn)
-                powerUpSpawners[Random.Range(0, powerUpSpawners.Count)].Spawn();
+
+            enabledPowerUp = true;
+
+            // if (respawn)
+            //     powerUpSpawners[Random.Range(0, powerUpSpawners.Count)].Spawn();
         }
     }
 
     private void OnDestroy()
     {
         EndEffect();
+        enabledPowerUp = false;
+        if (PowerUpHandler)
+            PowerUpHandler.currentPowerUp = null;
     }
 }
