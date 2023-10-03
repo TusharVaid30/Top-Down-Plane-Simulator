@@ -1402,8 +1402,6 @@ GameObject:
   m_Component:
   - component: {fileID: 286646017}
   - component: {fileID: 286646018}
-  - component: {fileID: 286646019}
-  - component: {fileID: 286646020}
   m_Layer: 0
   m_Name: Plane Sprite
   m_TagString: Untagged
@@ -1478,48 +1476,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!65 &286646019
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 286646016}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.1455233, y: 3.6622689, z: 1}
-  m_Center: {x: 0.020720541, y: 0.061838552, z: 0}
---- !u!65 &286646020
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 286646016}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 5.109104, y: 1.184184, z: 1}
-  m_Center: {x: -0.03539844, y: 0.31918308, z: 0}
 --- !u!1 &291669065
 GameObject:
   m_ObjectHideFlags: 0
@@ -8821,7 +8777,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &899884416
 AudioSource:
   m_ObjectHideFlags: 0
@@ -9312,6 +9268,8 @@ GameObject:
   - component: {fileID: 961974790}
   - component: {fileID: 961974784}
   - component: {fileID: 961974789}
+  - component: {fileID: 961974794}
+  - component: {fileID: 961974795}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Player
@@ -9577,6 +9535,48 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 10
+--- !u!65 &961974794
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961974777}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 13.44, y: 3.15, z: 1}
+  m_Center: {x: 0, y: 1.33, z: 0}
+--- !u!65 &961974795
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 961974777}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.07, y: 10.06, z: 1}
+  m_Center: {x: 0, y: 0.62, z: 0}
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0

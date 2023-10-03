@@ -3,7 +3,6 @@
 public class ForwardMovement : MonoBehaviour, IMovement
 {
     [SerializeField] private float speed;
-    [SerializeField] private float upgradedSpeed;
     
     private Rigidbody _rb;
 
@@ -11,7 +10,6 @@ public class ForwardMovement : MonoBehaviour, IMovement
     {
         _rb = GetComponent<Rigidbody>();
         Speed = speed;
-        UpgradedSpeed = upgradedSpeed;
     }
 
     public void Move()
@@ -20,5 +18,4 @@ public class ForwardMovement : MonoBehaviour, IMovement
     }
 
     public float Speed { get; set; }
-    public float UpgradedSpeed { get; set; }
 }

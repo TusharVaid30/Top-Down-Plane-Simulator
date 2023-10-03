@@ -68,6 +68,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawn: 0
+  effectTime: 5
+  powerUpCollider: {fileID: 5787364466459812120}
+  powerUpRenderer: {fileID: 6392615695804671498}
 --- !u!1 &4253015001096018023
 GameObject:
   m_ObjectHideFlags: 0

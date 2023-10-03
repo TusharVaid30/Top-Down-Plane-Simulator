@@ -4,5 +4,4 @@
     void Move();
     
     float Speed { set; get; }
-    float UpgradedSpeed { set; get; }
 }

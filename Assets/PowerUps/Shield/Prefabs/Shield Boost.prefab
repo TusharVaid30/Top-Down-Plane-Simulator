@@ -166,4 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   respawn: 1
+  effectTime: 5
+  powerUpCollider: {fileID: 2091159176390203675}
+  powerUpRenderer: {fileID: 4645386027329400221}
   shieldTime: 5

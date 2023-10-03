@@ -9,8 +9,13 @@ public class CoinPowerUp : PowerUp
         _scoreCounter = FindObjectOfType<ScoreCounter>();
     }
 
-    public override void PickUp(Component scoreCounter)
+    protected override void ApplyEffect(Transform scoreCounter)
     {
         _scoreCounter.CoinBonus();
+    }
+
+    protected override void EndEffect()
+    {
+        
     }
 }

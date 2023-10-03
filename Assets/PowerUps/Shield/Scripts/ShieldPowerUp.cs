@@ -2,12 +2,16 @@ using UnityEngine;
 
 public class ShieldPowerUp : PowerUp
 {
-    [SerializeField] private float shieldTime;
-
-    public override void PickUp(Component player)
+    protected override void ApplyEffect(Transform player)
     {
-        var powerUpHandler = player.GetComponent<PowerUpHandler>();
-        powerUpHandler.EnableShield(shieldTime);
-        powerUpHandler.powerUpEnabled = true;
+        PowerUpHandler.shieldEnabled = true;
+        PowerUpHandler.shieldVisual.SetActive(true);
+    }
+
+    protected override void EndEffect()
+    {
+        if (PowerUpHandler == null) return;
+        PowerUpHandler.shieldEnabled = false;
+        PowerUpHandler.shieldVisual.SetActive(false);
     }
 }

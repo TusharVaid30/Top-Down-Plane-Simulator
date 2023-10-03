@@ -2,12 +2,21 @@ using UnityEngine;
 
 public class SpeedPowerUp : PowerUp
 {
-    [SerializeField] private float speedBoostTime;
-    
-    public override void PickUp(Component player)
+    [SerializeField] private float upgradedSpeed;
+
+    private IMovement _playerInstance;
+    private float _startSpeed;
+
+    protected override void ApplyEffect(Transform player)
     {
-        var powerUpHandler = player.GetComponent<PowerUpHandler>();
-        powerUpHandler.EnableSpeedBoost(speedBoostTime);
-        powerUpHandler.powerUpEnabled = true;
+        _playerInstance = player.GetComponent<IMovement>();
+        _startSpeed = _playerInstance.Speed;
+        _playerInstance.Speed = upgradedSpeed;
+    }
+
+    protected override void EndEffect()
+    {
+        if (_playerInstance != null)
+            _playerInstance.Speed = _startSpeed;
     }
 }

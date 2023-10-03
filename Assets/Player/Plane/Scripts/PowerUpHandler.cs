@@ -5,7 +5,9 @@ public class PowerUpHandler : MonoBehaviour
     public bool powerUpEnabled;
     public bool shieldEnabled;
 
-    [SerializeField] private GameObject shieldVisual;
+    public PowerUp currentPowerUp;
+    
+    public GameObject shieldVisual;
 
     private IMovement _planeMovement;
     private float _startSpeed;
@@ -22,10 +24,10 @@ public class PowerUpHandler : MonoBehaviour
     private void Update()
     {
         if (!powerUpEnabled) return;
-        if (Time.time > _timer + _maxPowerUpTime)
-            DisableAllPowerUps();
-        else if (Time.time > _timer + _maxPowerUpTime - 2f && shieldEnabled)
-            shieldVisual.GetComponent<Animator>().SetTrigger(StartBlinking);
+        // if (Time.time > _timer + _maxPowerUpTime)
+        //     DisableAllPowerUps();
+        // else if (Time.time > _timer + _maxPowerUpTime - 2f && shieldEnabled)
+        //     shieldVisual.GetComponent<Animator>().SetTrigger(StartBlinking);
     }
 
     public void EnableShield(float time)
@@ -40,7 +42,6 @@ public class PowerUpHandler : MonoBehaviour
     {
         DisableAllPowerUps();
         ResetTimer(time);
-        _planeMovement.Speed = _planeMovement.UpgradedSpeed;
     }
 
     private void DisableAllPowerUps()
